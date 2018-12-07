@@ -15,10 +15,6 @@ class Bullet extends GameObject{
 		if(this.x+this.width > screen.width){
 			objectManager.removeObject(this);
 		}
-		this.render();
 	}
-	render(){
-		this.div.style.left=this.x+"px";		
-		this.div.style.top=this.y+"px";
-	}
+
 }

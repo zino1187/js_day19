@@ -23,8 +23,6 @@
 var stage;
 var bgX=0;
 var plane;
-var objectArray=[]; //게임에 등장할 모든 종류의 오브젝트들을
-							//모아놓을 배열
 var objectManager;
 
 function init(){
@@ -69,13 +67,8 @@ function control(){
 
 function gameLoop(){
 	bgEffect();
-	//objectArray에 들어있는 게임 오브젝트들을 대상으로 tick(), render()
-	//를 호출하면 된다..
-	for(var i=0;i<objectArray.length;i++){
-		console.log(objectArray.length);
-		objectArray[i].tick();
-	}
-
+	objectManager.tick();
+	objectManager.render();
 	console.log("gameLoop()...");
 	setTimeout("gameLoop()",1);
 }

@@ -5,18 +5,33 @@
    총알이 적군과 마주치면, 이 객체에 삭제를 의뢰하면 알아서 하차 시킴
 */
 class ObjectManager{
+	constructor(){
+		this.objectArray=[]; //게임에 등장할 모든 종류의 오브젝트들을
+									//모아놓을 배열
+	}
+
 	//의뢰받은 객체를 objectArray라는 명단에 넣기!!
 	addObject(obj){
-		objectArray.push(obj);
+		this.objectArray.push(obj);
 	}
 	//의뢰받은 객체를 objectArray에서 제거하기!!
 	removeObject(obj){
-		console.log("저 죽어요 ",objectArray.indexOf(obj)," 번째 있었어요");
+		console.log("저 죽어요 ",this.objectArray.indexOf(obj)," 번째 있었어요");
 		//화면에서 제거
 		stage.removeChild(obj.div);
-
 		//배열에서 제거
-		objectArray.splice(objectArray.indexOf(obj),1);
+		this.objectArray.splice(this.objectArray.indexOf(obj),1);
+	}
+	//tick, render 처리하자!!
+	tick(){
+		for(var i=0;i<this.objectArray.length;i++){
+			this.objectArray[i].tick();
+		}
+	}
+	render(){
+		for(var i=0;i<this.objectArray.length;i++){
+			this.objectArray[i].render();
+		}
 	}
 }
 
