@@ -12,23 +12,58 @@
 	position:relative;
 }
 </style>
+<script src="./GameObject.js"></script>
+<script src="./ObjectManager.js"></script>
+<script src="./Plane.js"></script>
+<script src="./Bullet.js"></script>
 <script>
 /*frame(틀)work(업무,작업)
 특정 업무를 위해 만들어놓은 틀..*/
 var stage;
 var bgX=0;
+var plane;
+var objectArray=[]; //게임에 등장할 모든 종류의 오브젝트들을
+							//모아놓을 배열
+var objectManager;
+
 function init(){
 	stage=document.getElementById("stage");
+	//게임 객체 관리자 생성: 앞으로 등장하거나, 제거될 게임 오브젝트는
+	//모두 이 객체에게 맡기면 된다!!
+	objectManager=new ObjectManager();
+
+	createPlane();
 	gameLoop();
 }
+
+//주인공 생성
+function createPlane(){
+	var plane=new Plane(stage,50,100,85,45,0,0,0, 0,"","../res/plane.png");
+
+	objectManager.addObject(plane);//주인공 등록 !!!
+}
+
 //배경 에니메이션 처리 
 function bgEffect(){
 	bgX--;
 	stage.style.backgroundPosition=bgX+"px 0px";
 }
 
+function control(){
+	var bullet = new Bullet(stage,0,0,25,20,8,0,0,0,"","../res/ball.png");
+	//생성된 총알을 오브젝트 관리자에게 등록하자!!
+	objectManager.addObject(bullet);
+}
+
 function gameLoop(){
 	bgEffect();
+	//objectArray에 들어있는 게임 오브젝트들을 대상으로 tick(), render()
+	//를 호출하면 된다..
+	for(var i=0;i<objectArray.length;i++){
+		objectArray[i].tick();
+		objectArray[i].render();
+	}
+
 	console.log("gameLoop()...");
 	setTimeout("gameLoop()",1);
 }
@@ -40,7 +75,7 @@ addEventListener("load",function(){
 
 </script>
 </head>
-<body>
+<body onKeyDown="control()">
 	<div id="stage"></div>
 </body>
 </html>

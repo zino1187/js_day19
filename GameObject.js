@@ -21,7 +21,7 @@ class GameObject{
 		this.div.style.top=this.y+"px";
 		this.div.style.width=this.width+"px";
 		this.div.style.height=this.height+"px";
-		this.div.style.background="blue";
+		this.div.style.background=this.bg;
 		//이미지 관련 설정
 		if(this.src !=""){//이미지가 있을 때만...
 			this.img.src=this.src;
