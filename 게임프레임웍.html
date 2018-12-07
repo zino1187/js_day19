@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>게임 프레임웍</title>
+<style>
+*{margin:0px;}
+#stage{
+	width:100%;
+	height:640px;
+	background:url("../res/game_bg.jpg");
+	position:relative;
+}
+</style>
+<script>
+/*frame(틀)work(업무,작업)
+특정 업무를 위해 만들어놓은 틀..*/
+var stage;
+var bgX=0;
+function init(){
+	stage=document.getElementById("stage");
+	gameLoop();
+}
+//배경 에니메이션 처리 
+function bgEffect(){
+	bgX--;
+	stage.style.backgroundPosition=bgX+"px 0px";
+}
+
+function gameLoop(){
+	bgEffect();
+	console.log("gameLoop()...");
+	setTimeout("gameLoop()",1);
+}
+addEventListener("load",function(){
+	init();
+});
+
+
+
+</script>
+</head>
+<body>
+	<div id="stage"></div>
+</body>
+</html>
