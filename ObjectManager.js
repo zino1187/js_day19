@@ -11,7 +11,12 @@ class ObjectManager{
 	}
 	//의뢰받은 객체를 objectArray에서 제거하기!!
 	removeObject(obj){
-		objectArray.splice( 0,1);
+		console.log("저 죽어요 ",objectArray.indexOf(obj)," 번째 있었어요");
+		//화면에서 제거
+		stage.removeChild(obj.div);
+
+		//배열에서 제거
+		objectArray.splice(objectArray.indexOf(obj),1);
 	}
 }
 
