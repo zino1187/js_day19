@@ -12,13 +12,20 @@
 }
 </style>
 <script src="./GameObject.js"></script>
+<script src="./Block.js"></script>
 <script>
+var stage;
 function init(){
-
+	stage=document.getElementById("stage");
+	createBlock();
+}
+function createBlock(){
+	var block=new Block(stage,100,100,45,45,0,0,0, 0,"","../res/block.png");
 }
 addEventListener("load", function(){
 	init();
 });
+
 function gameLoop(){
 	setTimeout("gameLoop()");
 }
