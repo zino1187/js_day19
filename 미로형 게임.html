@@ -24,6 +24,7 @@ function init(){
 	addEventListener("mousedown", function(){
 		createBlock( event.clientX , event.clientY);	
 	});
+	gameLoop();
 }
 //주인공 생성
 function createHero(){
@@ -34,16 +35,33 @@ function createHero(){
 function createBlock(mx,my){
 	var block=new Block(stage,mx,my,45,45,0,0,0, 0,"","../res/block.png");
 }
+function joystick(){
+	var key=event.keyCode;
+
+	switch(key){
+		case 37:hero.velX=-5;break;	//좌
+		case 39:hero.velX=5;break;	//우
+		case 38:hero.velY=-5;break;	//위
+		case 40:hero.velY=5;break;	//아래
+	}
+}
+function stop(){
+	hero.velX=0;
+	hero.velY=0;
+}
+
 addEventListener("load", function(){
 	init();
 });
 
 function gameLoop(){
+	hero.tick();
+	hero.render();
 	setTimeout("gameLoop()");
 }
 </script>
 </head>
-<body>
+<body onKeyDown="joystick()" onKeyUp="stop()">
 	<div id="stage"></div>
 </body>
 </html>
