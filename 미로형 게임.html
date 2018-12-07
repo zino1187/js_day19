@@ -13,14 +13,26 @@
 </style>
 <script src="./GameObject.js"></script>
 <script src="./Block.js"></script>
+<script src="./Hero.js"></script>
 <script>
 var stage;
+var hero;
+
 function init(){
 	stage=document.getElementById("stage");
-	createBlock();
+	createHero();
+	addEventListener("mousedown", function(){
+		createBlock( event.clientX , event.clientY);	
+	});
 }
-function createBlock(){
-	var block=new Block(stage,100,100,45,45,0,0,0, 0,"","../res/block.png");
+//주인공 생성
+function createHero(){
+	hero = new Hero(stage,50,50,45,100,0,0,0, 0,"blue","");
+}
+
+//마우스의 좌표에 생성되게 하자!!
+function createBlock(mx,my){
+	var block=new Block(stage,mx,my,45,45,0,0,0, 0,"","../res/block.png");
 }
 addEventListener("load", function(){
 	init();

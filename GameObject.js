@@ -23,11 +23,12 @@ class GameObject{
 		this.div.style.height=this.height+"px";
 		this.div.style.background="blue";
 		//이미지 관련 설정
-		this.img.src=this.src;
-		this.img.style.width=this.width+"px";
-		this.img.style.height=this.height+"px";
-		this.div.appendChild(this.img);
-
+		if(this.src !=""){//이미지가 있을 때만...
+			this.img.src=this.src;
+			this.img.style.width=this.width+"px";
+			this.img.style.height=this.height+"px";
+			this.div.appendChild(this.img);
+		}
 		this.container.appendChild(this.div);
 	}	
 	//설령 부모가 그 행동을 정해놓을지라도, 이 클래스를 상속받는 자식은
