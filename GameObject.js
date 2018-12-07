@@ -1,6 +1,11 @@
-/*최상위 객체를 정의한다!!!*/
+/*최상위 객체를 정의한다!!!
+type : 주인공 HERO
+		  총알 : BULLET 
+		  적국 : ENEMY 
+*/
 class GameObject{
-	constructor(container,x,y,width,height,velX,velY,targetX, targetY,bg,src){
+	constructor(type,container,x,y,width,height,velX,velY,targetX, targetY,bg,src){
+		this.type=type;
 		this.container=container;
 		this.x=x;
 		this.y=y;
